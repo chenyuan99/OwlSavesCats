@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<body>
+    <div class="container text-center">
+        {% for article in page_obj %}
+        <div>## {{ article.title }} ##</div>
+        <div>{{ article.content }}</div>
+        {% endfor %}
+
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+
+                <!-- {% if  page_obj.previous_page_number > 0 %} -->
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.previous_page_number}}" aria-label="Previous">
+                        <span aria-hidden="true">上一页</span>
+                    </a>
+                </li>
+                <!-- {% endif %} -->
+
+                {% for page_num in page_list %}
+                {% if page_num == page_obj.number %}
+                <li class="page-item active"><a class="page-link" href="?page={{ page_num }}">{{ page_num }}</a></li>
+                {% else %}
+                <li class="page-item"><a class="page-link" href="?page={{ page_num }}">{{ page_num }}</a></li>
+                {% endif %}
+                {% endfor %}
+
+                <!-- {% if page_obj.has_next %} -->
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                        <span aria-hidden="true">下一页</span>
+                    </a>
+                </li>
+                <!-- {% endif %} -->
+
+            </ul>
+        </nav>
+
+        <!-- <nav aria-label="Page navigation example">
+    <ul class="pagination">
+      <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+      <li class="page-item"><a class="page-link" href="#">1</a></li>
+      <li class="page-item"><a class="page-link" href="#">2</a></li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item"><a class="page-link" href="#">Next</a></li>
+    </ul>
+  </nav> -->
+
+    </div>
+
+    {% endblock %}

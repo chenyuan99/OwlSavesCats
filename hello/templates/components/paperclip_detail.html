@@ -1,0 +1,24 @@
+<!-- {% url 'paperclip_detail' paperclip.id} -->
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class = "container">
+    <h3>{{paperclip.title|capfirst}}</h3>
+    <p>{{paperclip.abstract}}</p>
+</div>
+<div class = "container">
+<div id="adobe-dc-view" style="width: 800px;"></div>
+<script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+<script type="text/javascript">
+	document.addEventListener("adobe_dc_view_sdk.ready", function(){ 
+		var adobeDCView = new AdobeDC.View({clientId: "a9e55db151ad46b1b8c45de222450016", divId: "adobe-dc-view"});
+		adobeDCView.previewFile({
+			content:{location: {url: "https://arxiv.org/pdf/1312.5602.pdf"}},
+			metaData:{fileName: "{{paperclip.title}}.pdf"}
+		}, {embedMode: "IN_LINE"});
+	});
+</script>
+</div>
+
+{% endblock %}

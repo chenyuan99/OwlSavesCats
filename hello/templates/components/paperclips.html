@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<!-- <title>Virginia Tech Buildings</title> -->
+<div class="jumbotron text-center">
+  <div class="container">
+    <h1>所有的论文</h1>
+    <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+  </div>
+</div>
+<div class="container">
+
+  <br>
+
+  <div class="button-group">
+
+          <a href="{% url 'paperclips' %}" class="btn btn-outline-primary btn-md" role="button">Paperclips</a>
+          <a href="{% url 'add_paperclip' %}" class="btn btn-outline-primary btn-md" role="button">Add paperclip</a>
+  </div>
+
+
+  <table class="table table-hover text-center">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Title</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for paperclip in paperclips %}
+    <!-- <div class="container">
+    <div class="card">
+        <h3>{{paperclip.title|capfirst}}</h3>
+        <p><a herf= "{% url 'paperclip_detail' paperclip.id %}">read more</a></p>
+    </div>
+  </div> -->
+      <tr>
+        <th scope="row">{{paperclip.id}}</th>
+        <td>{{paperclip.title|capfirst}}</td>
+        <!-- <td></td><a herf= "{% url 'paperclip_detail' paperclip.id %}">read more</a></td> -->
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
