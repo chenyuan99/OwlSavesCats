@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="jumbotron text-center">
+    <div class="container">
+        <div class="clear"></div>
+        <h1>账号</h1>
+        <p>{{user.username|title}}</p>
+    </div>
+</div>
+<div class="container ">
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading text-center"><h3>星标</h3></div>
+
+        <!-- Table -->
+        <table>
+            <tr>
+                <th>Field 1</th>
+                ...
+                <th>Field N</th>
+            </tr>
+            {% for item in query_results %}
+            <tr> 
+                <td>{{ item.field1 }}</td>
+                ...
+                <td>{{ item.fieldN }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading text-center"><h3>历史</h3></div>
+
+        <!-- Table -->
+        <table>
+            <tr>
+                <th>Field 1</th>
+                ...
+                <th>Field N</th>
+            </tr>
+            {% for item in query_results %}
+            <tr> 
+                <td>{{ item.field1 }}</td>
+                ...
+                <td>{{ item.fieldN }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock %}

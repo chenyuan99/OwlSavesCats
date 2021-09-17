@@ -1,0 +1,436 @@
+{% load static %}
+<!DOCTYPE html>
+<!-- <html lang="en"> -->
+<html lang=zh-cmn-Hans>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
+  <title>独馨科研社区</title>
+  <link rel="shortcut icon" type="image/png" href="{% static '独馨.png' %}" />
+  <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <style type="text/css">
+    .container {
+      background-color: #ffffff
+    }
+
+    .navbar {
+      background-color: #ffffff;
+      min-height: 80px;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 9px 0px !important;
+    }
+
+    .navbar .navbar-brand {
+      position: 0;
+      color: #000000;
+      height: 60px;
+      line-height: 60px;
+      padding-top: 2px;
+    }
+
+    .navbar .navbar-brand:hover,
+    .navbar .navbar-brand:focus {
+      color: #fffefe;
+      /* background-color:#75787B; */
+    }
+
+    .navbar .navbar-text {
+      color: #000000;
+      background-color: #75787B;
+    }
+
+    .navbar .navbar-text a {
+      color: #fffefe;
+      background-color: #75787B;
+    }
+
+    .navbar .navbar-text a:hover,
+    .navbar .navbar-text a:focus {
+      color: #fffefe;
+      background-color: #75787B;
+    }
+
+    .navbar .navbar-nav .nav-link {
+      color: #000000;
+      border-radius: .25rem;
+      margin: 0 0.25em;
+    }
+
+    .navbar .navbar-nav .nav-link:not(.disabled):hover,
+    .navbar .navbar-nav .nav-link:not(.disabled):focus {
+      color: #fffefe;
+      background-color: #75787B;
+    }
+
+    .navbar .navbar-nav .nav-item.active .nav-link,
+    .navbar .navbar-nav .nav-item.active .nav-link:hover,
+    .navbar .navbar-nav .nav-item.active .nav-link:focus,
+    .navbar .navbar-nav .nav-item.show .nav-link,
+    .navbar .navbar-nav .nav-item.show .nav-link:hover,
+    .navbar .navbar-nav .nav-item.show .nav-link:focus {
+      color: #fffefe;
+      background-color: #000000;
+    }
+
+    .navbar .navbar-toggle {
+      /* border-color: #000000; */
+      margin-top: 23px;
+      padding: 9px 10px !important;
+    }
+
+    .navbar .navbar-toggle:hover,
+    .navbar .navbar-toggle:focus {
+      background-color: #000000;
+      margin-top: 23px;
+      padding: 9px 10px !important;
+    }
+
+    .navbar .navbar-toggle .navbar-toggler-icon {
+      color: #000000;
+      margin-top: 23px;
+      padding: 9px 10px !important;
+    }
+
+    .navbar .navbar-collapse,
+    .navbar .navbar-form {
+      border-color: #000000;
+    }
+
+    .navbar .navbar-link {
+      color: #000000;
+    }
+
+    .navbar .navbar-link:hover {
+      color: #fffefe;
+      background-color: #75787B;
+    }
+
+    @media (max-width: 575px) {
+      .navbar-expand-sm .navbar-nav .show .dropdown-menu .dropdown-item {
+        color: #000000;
+      }
+
+      .navbar-expand-sm .navbar-nav .show .dropdown-menu .dropdown-item:hover,
+      .navbar-expand-sm .navbar-nav .show .dropdown-menu .dropdown-item:focus {
+        color: #fffefe;
+        background-color: #75787B;
+      }
+
+      .navbar-expand-sm .navbar-nav .show .dropdown-menu .dropdown-item.active {
+        color: #fffefe;
+        background-color: #000000;
+      }
+
+      .navbar-nav>li>a {
+        /* (80px - line-height of 27px) / 2 = 26.5px */
+        padding-top: 26.5px;
+        padding-bottom: 26.5px;
+        line-height: 27px;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .navbar-expand-md .navbar-nav .show .dropdown-menu .dropdown-item {
+        color: #000000;
+      }
+
+      .navbar-expand-md .navbar-nav .show .dropdown-menu .dropdown-item:hover,
+      .navbar-expand-md .navbar-nav .show .dropdown-menu .dropdown-item:focus {
+        color: #fffefe;
+        background-color: #75787B;
+      }
+
+      .navbar-expand-md .navbar-nav .show .dropdown-menu .dropdown-item.active {
+        color: #fffefe;
+        background-color: #000000;
+      }
+
+      .navbar-nav>li>a {
+        /* (80px - line-height of 27px) / 2 = 26.5px */
+        padding-top: 26.5px;
+        padding-bottom: 26.5px;
+        line-height: 27px;
+      }
+    }
+
+    @media (max-width: 991px) {
+      .navbar-expand-lg .navbar-nav .show .dropdown-menu .dropdown-item {
+        color: #000000;
+
+
+      }
+
+      .navbar-nav>li>a {
+        /* (80px - line-height of 27px) / 2 = 26.5px */
+        padding-top: 26.5px;
+        padding-bottom: 26.5px;
+        line-height: 27px;
+      }
+
+      .navbar-expand-lg .navbar-nav .show .dropdown-menu .dropdown-item:hover,
+      .navbar-expand-lg .navbar-nav .show .dropdown-menu .dropdown-item:focus {
+        color: #fffefe;
+        background-color: #75787B;
+      }
+
+      .navbar-expand-lg .navbar-nav .show .dropdown-menu .dropdown-item.active {
+        color: #fffefe;
+        background-color: #000000;
+      }
+    }
+
+    @media (max-width: 1199px) {
+      .navbar-expand-xl .navbar-nav .show .dropdown-menu .dropdown-item {
+        color: #000000;
+      }
+
+      .navbar-nav>li>a {
+        /* (80px - line-height of 27px) / 2 = 26.5px */
+        padding-top: 26.5px;
+        padding-bottom: 26.5px;
+        line-height: 27px;
+      }
+
+      .navbar-expand-xl .navbar-nav .show .dropdown-menu .dropdown-item:hover,
+      .navbar-expand-xl .navbar-nav .show .dropdown-menu .dropdown-item:focus {
+        color: #fffefe;
+        background-color: #75787B;
+      }
+
+      .navbar-expand-xl .navbar-nav .show .dropdown-menu .dropdown-item.active {
+        color: #fffefe;
+        background-color: #000000;
+      }
+    }
+
+    .navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item {
+      color: #000000;
+    }
+
+    .navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item:hover,
+    .navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item:focus {
+      color: #fffefe;
+      background-color: #75787B;
+    }
+
+    .navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item.active {
+      color: #fffefe;
+      background-color: #000000;
+    }
+
+    .index-header__logo {
+      height: 50px;
+      width: 50px;
+      padding-bottom: 0;
+    }
+
+    .jumbotron {
+      /* padding-top: 50px; */
+      background: white;
+      color: black;
+      padding-bottom: 80px
+    }
+
+    .jumbotron .btn-primary {
+      background: #C64600;
+      border: none;
+    }
+
+    .jumbotron .button-index {
+      background-color: #4CAF50;
+      /* Green */
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+    }
+
+    .jumbotron .btn-primary:hover {
+      background: #E87722;
+      border: none;
+    }
+
+    .jumbotron p {
+      color: black;
+      max-width: 75%;
+      margin: 1em auto 2em
+    }
+
+    .navbar+.jumbotron {
+      margin-top: -20px
+    }
+
+    .jumbotron .lang-logo {
+      display: block;
+      background: white;
+      border-radius: 50%;
+      overflow: hidden;
+      width: 100px;
+      height: 100px;
+      margin: auto;
+      border: 2px solid white
+    }
+
+    .jumbotron .lang-logo img {
+      max-width: 100%
+    }
+
+    .center {
+      margin: auto;
+      text-align: center;
+    }
+
+    .footer {
+      background: white;
+      text-align: center;
+      padding-bottom: 60px
+    }
+
+    .clear {
+      padding-top: 50px;
+      background: white;
+      padding-bottom: 80px
+    }
+  </style>
+  <!-- <link href="{% static 'css/bootstrap-tagsinput.css' %}" rel="stylesheet">
+  <link href="{% static 'css/share.min.css' %}" rel="stylesheet">
+  <link href="{% static 'css/mystyle.css' %}" rel="stylesheet"> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    .bootstrap-tagsinput>input {
+      width: 100%;
+    }
+  </style>
+  {% block css %}{% endblock %}
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <div class="navbar-header">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+
+        <a class="navbar-brand" href="/"> <img class="index-header__logo" src="{% static '独馨.png' %}" alt="独馨"></a>
+      </div>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <form action="{% url 'search' %}" class="form-inline" role="search">
+            <div class="form-group">
+              <input name="s" type="text" class="form-control" placeholder="搜索">
+            </div>
+            <button type="submit" class="btn btn-default">搜索</button>
+          </form>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="nav-item active">
+            <a class="nav-link" href="/">主页 </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+              aria-haspopup="true" aria-expanded="false">
+              功能<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+            </ul>
+          </li>
+          {% if user.is_authenticated %}
+          <li class="nav-item"><a class="nav-link" href="/account">{{user.username|title}}</a></li>
+          <li class="nav-item"><a class="nav-link" href="/logout">登出</a></li>
+          {% else %}
+          <button class="btn btn-default" type="button" data-toggle="modal" data-target="#loginModal">登录</button>
+          <button class="btn btn-default" type="button" data-toggle="modal" data-target="#registerModal">加入独馨</button>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 对话框HTML -->
+  <div class="modal fade" id="askModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="login-header">
+          <h1 style="color: black">写下你的问题</h1>
+          <p style="color: #8590a6">描述精确的问题更易得到解答</p>
+        </div>
+        <div class="login-content">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 对话框HTML -->
+  <div class="modal fade" id="loginModal">
+    <div class="modal-dialog" style="width: 420px">
+      <div class="modal-content">
+        <div class="login-header">
+          <p style="font-size: 45px; margin-bottom: 40px">独馨</p>
+          <h1 style="font-weight: 400">登录独馨，连接中文科研</h1>
+        </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 对话框HTML -->
+  <div class="modal fade" id="registerModal">
+    <div class="modal-dialog" style="width: 420px">
+      <div class="modal-content">
+        <div class="login-header">
+          <p style="font-size: 45px; margin-bottom: 40px">独馨</p>
+          <h1 style="font-weight: 400">登录独馨，发现更大的世界</h1>
+        </div>
+        <div class="login-content">
+          <form action="/login/" method="post">
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="form-group {% if field.errors %}has-error{% endif %}">
+                {{ field.label_tag }}
+                {{ field }}
+                {% if field.errors %}
+                <div class="help-block">{{ field.errors }}</div>
+                {% endif %}
+            </div>
+            {% endfor %}
+            <button type="submit" class="Button Button-blue" onclick="register();return false"
+              style="width: 310px;">注册</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top: 45px">{% block content %}
+    {% block header %}{% endblock %}
+    {% endblock %}</div>
+  <script>
+    $(document).ready(function () {
+      $('.bootstrap-tagsinput').attr('style', 'width: 100%');
+      $('.taginput').tagsinput({
+        maxTags: 5
+      });
+    });
+
+  </script>
+  {% block script %}{% endblock %}
+
+
+
+  {% include 'footer.html' %}
+
+</body>
+
+</html>
