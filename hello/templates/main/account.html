@@ -3,51 +3,89 @@
 {% block content %}
 <div class="jumbotron text-center">
     <div class="container">
-        <div class="clear"></div>
-        <h1>账号</h1>
+        <h1>我的账号</h1>
         <p>{{user.username|title}}</p>
     </div>
 </div>
-<div class="container ">
-    <div class="panel panel-default">
-        <!-- Default panel contents -->
-        <div class="panel-heading text-center"><h3>星标</h3></div>
 
-        <!-- Table -->
-        <table>
-            <tr>
-                <th>Field 1</th>
-                ...
-                <th>Field N</th>
-            </tr>
-            {% for item in query_results %}
-            <tr> 
-                <td>{{ item.field1 }}</td>
-                ...
-                <td>{{ item.fieldN }}</td>
-            </tr>
-            {% endfor %}
-        </table>
-    </div>
-    <div class="panel panel-default">
-        <!-- Default panel contents -->
-        <div class="panel-heading text-center"><h3>历史</h3></div>
-
-        <!-- Table -->
-        <table>
-            <tr>
-                <th>Field 1</th>
-                ...
-                <th>Field N</th>
-            </tr>
-            {% for item in query_results %}
-            <tr> 
-                <td>{{ item.field1 }}</td>
-                ...
-                <td>{{ item.fieldN }}</td>
-            </tr>
-            {% endfor %}
-        </table>
-    </div>
+<div class="container">
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+          <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Home</a>
+          <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</a>
+          <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</a>
+        </div>
+      </nav>
+      <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+            <div class="container ">
+                <div class="card">
+                    <!-- Default panel contents -->
+                    <div class="card-header text-center"><h3>我的论文</h3></div>
+            
+                    <!-- Table -->
+                    <table>
+                        <tr>
+                            <th>Field 1</th>
+                            ...
+                            <th>Field N</th>
+                        </tr>
+                        {% for item in paperclip %}
+                        <tr> 
+                            <td>{{ item.title }}</td>
+                            ...
+                            <td>{{ item.abstact }}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+                <div class="card">
+                    <div class="card-header text-center"><h3>收藏夹</h3></div>
+            
+                    <!-- Table -->
+                    <table>
+                        <tr>
+                            <th>Field 1</th>
+                            ...
+                            <th>Field N</th>
+                        </tr>
+                        {% for item in query_results %}
+                        <tr> 
+                            <td>{{ item.field1 }}</td>
+                            ...
+                            <td>{{ item.fieldN }}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+                <div class="panel panel-default">
+                    <!-- Default panel contents -->
+                    <div class="card-header text-center"><h3>浏览记录</h3></div>
+            
+                    <!-- Table -->
+                    <table>
+                        <tr>
+                            <th>Field 1</th>
+                            ...
+                            <th>Field N</th>
+                        </tr>
+                        {% for item in query_results %}
+                        <tr> 
+                            <td>{{ item.field1 }}</td>
+                            ...
+                            <td>{{ item.fieldN }}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        
+        
+        
+        
+        </div>
+        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
+        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
+      </div>
 </div>
 {% endblock %}
