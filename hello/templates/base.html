@@ -2,75 +2,31 @@
 {% load crispy_forms_tags %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta name="viewport"
     content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
-  <title>独馨科研社区</title>
+  <title>Owl Saves Cats</title>
   <link rel="shortcut icon" type="image/png" href="https://imgur.com/za9Otgl" />
-  <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <style type="text/css">
-    .jumbotron {
-      /* background: #861F41;
-      color: white; */
-      background: white;
-      color: black;
-      padding-bottom: 80px
-    }
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    .jumbotron .btn-primary {
-      background: #C64600;
-      border-color: #C64600
-    }
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 
-    .jumbotron .btn-primary:hover {
-      background: #E87722
-    }
-
-    .jumbotron p {
-      color: black;
-      max-width: 75%;
-      margin: 1em auto 2em
-    }
-
-    .navbar+.jumbotron {
-      margin-top: -20px
-    }
-
-    .jumbotron .lang-logo {
-      display: block;
-      background: #b01302;
-      border-radius: 50%;
-      overflow: hidden;
-      width: 100px;
-      height: 100px;
-      margin: auto;
-      border: 2px solid white
-    }
-
-    .jumbotron .lang-logo img {
-      max-width: 100%
-    }
-
-    .center {
-      margin: auto;
-      text-align: center;
-    }
-
-    .footer {
-      margin: auto;
-      text-align: center;
-    }
-  </style>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!--    <script src="main.js"></script>-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
 </head>
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-light border-bottom" style="background-color: white;">
     <div class="container">
-      <a class="navbar-brand" href="/">独馨科研</a>
+      <a class="navbar-brand" href="/">Owl Saves Cats</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -80,86 +36,28 @@
         <ul class="navbar-nav mr-auto">
           <form class="form-inline" action="{% url 'search_results' %}" method="get">
             <input class="form-control mr-sm-2" name="q" type="text" placeholder="Search...">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜索</button>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
           </form>
         </ul>
 
         </ul>
         <ul class="navbar-nav mt-2 mt-lg-0">
           <li class="active">
-            <a class="nav-link" href="/"></span> <i class="bi-house"></i>主页</a>
+            <a class="nav-link" href="/"></span> <i class="bi-house"></i>Home</a>
           </li>
-          <a class="nav-link" href="/paperclips"></span><i class="bi-list"></i> 列表</a>
+          <a class="nav-link" href="/paperclips"></span><i class="bi-list"></i> Toolbox</a>
           {% if user.is_authenticated %}
           <li><a class="nav-link" href="/account">{{user.username|title}}</a></li>
-          <li><a class="nav-link" href="/logout"><i class="bi-box-arrow-down"></i> 登出</a></li>
+          <li><a class="nav-link" href="/logout"><i class="bi-box-arrow-down"></i> Log Out</a></li>
           {% else %}
-          <li><a class="nav-link" href="/login"><i class="bi-person-circle"></i> 登录</a></li>
-          <li><a class="nav-link" href="/register"><i class="bi-person-plus"></i> 注册</a></li>
+          <li><a class="nav-link" href="/login"><i class="bi-person-circle"></i> Log In</a></li>
+          <li><a class="nav-link" href="/register"><i class="bi-person-plus"></i> Register</a></li>
           {% endif %}
         </ul>
       </div>
     </div>
   </nav>
 
-  <!-- 对话框HTML -->
-  <div class="modal fade" id="registerModal">
-    <div class="modal-dialog" style="width: 420px">
-      <div class="modal-content">
-        <div class="login-header text-center">
-          <p style="font-size: 45px; margin-bottom: 40px">独馨</p>
-          <p style="font-weight: 400">登录独馨，发现更大的世界</p>
-        </div>
-        <div class="container">
-          {% if messages %}
-          {% for message in messages %}
-          {% if message.tags == 'success'%}
-          <script>M.toast({ html: "{{message}}", classes: 'green rounded', displayLength: 2000 });</script>
-          {% elif message.tags == 'info'%}
-          <script>M.toast({ html: "{{message}}", classes: 'blue rounded', displayLength: 2000 });</script>
-          {% elif message.tags == 'warning'%}
-          <script>M.toast({ html: "{{message}}", classes: 'orange rounded', displayLength: 10000 });</script>
-          {% elif message.tags == 'error'%}
-          <script>M.toast({ html: "{{message}}", classes: 'red rounded', displayLength: 10000 });</script>
-          {% endif %}
-          {% endfor %}
-          {% endif %}
-          <div class="container">
-              <br>
-              <form method="POST">
-                  {% csrf_token %}
-                  {{form|crispy}}
-                  <button class="btn btn-outline-info" type="submit">Sign Up</button>
-              </form>
-          </div>
-          <div class="container text-center">
-              If you already have an account <a href="/login" target="blank"><strong>login</strong></a> instead.
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 对话框HTML -->
-  <div class="modal fade" id="loginModal">
-    <div class="modal-dialog" style="width: 420px">
-      <div class="modal-content">
-        <div class="login-header">
-          <p style="font-size: 45px; margin-bottom: 40px">独馨</p>
-          <h1 style="font-weight: 400">登录独馨，连接中文科研</h1>
-        </div>
-        <div class="center">
-          <form method="POST">
-            {% csrf_token %}
-            {{form.as_p}}
-            <button class="btn btn-lg btn-default" type="submit">Login</button>
-          </form>
-          Don't have an account? <a href="/register" target="blank"><strong>register here</strong></a>!
-        </div>
-
-      </div>
-    </div>
-  </div>
 
   {% block content %}{% endblock %}
 
