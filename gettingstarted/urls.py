@@ -2,7 +2,6 @@ from django.urls import path, include
 from django.views.generic.base import RedirectView
 from django.contrib import admin
 from django.urls import include, re_path
-from django.conf.urls import url
 from hello.views import HomePageView, SearchResultsView
 admin.autodiscover()
 
@@ -34,7 +33,7 @@ urlpatterns = [
     path("account", hello.views.account, name="account"),
     path("paperclips",hello.views.paperclips, name = "paperclips"),
     path("paperclips/<int:paperclip_id>/",hello.views.paperclip_detail, name = "paperclip_detail"),
-    url(r'^add_paperclip$', hello.views.add_paperclip, name='add_paperclip'),
+    re_path(r'^add_paperclip$', hello.views.add_paperclip, name='add_paperclip'),
     # 其他 url 配置
     path('search/', SearchResultsView.as_view(), name='search_results'),
     path('blog/index', hello.views.display_blogs, name='blog/index'),
