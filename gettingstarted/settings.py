@@ -1,11 +1,12 @@
 import os
 import django_heroku
 import dj_database_url
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = "CHANGE_ME!!!! (P.S. the SECRET_KEY environment variable will be used, if set, instead)."
 DEBUG = True
 ALLOWED_HOSTS = ["*"]
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+# CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # Application definitionS
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -14,9 +15,6 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "import_export",
-    "django_filters",
-    'crispy_forms',
     "hello",
 ]
 
@@ -50,20 +48,18 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "gettingstarted.wsgi.application"
 
-
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dd3bn7j6npkb77',
-        'USER': 'cctbngxszzqfqd',
-        'PASSWORD': '27806b12d32d049c6564a26ec8a83d41ac3e57c21720c91b47792688cb0b414c',
-        'HOST': 'ec2-184-72-162-198.compute-1.amazonaws.com',
-        'PORT': '5432',
-    }
+    'default': dj_database_url.parse(
+        "mysql://bb35b85be45105:bb27a820@us-cdbr-east-05.cleardb.net/heroku_9576b3861dcc914")
 }
+
+
+
+
+
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
@@ -76,7 +72,6 @@ AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/

@@ -2,7 +2,5 @@ django
 gunicorn
 django-heroku
 django-mobile
-django-crispy-forms
-django-filter
-django-import-export
 markdown
+pymysql
