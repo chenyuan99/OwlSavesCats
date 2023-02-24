@@ -4,3 +4,6 @@ django-heroku
 django-mobile
 markdown
 pymysql
+djangorestframework
+django-filter
+cloudinary

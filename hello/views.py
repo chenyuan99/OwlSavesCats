@@ -182,7 +182,7 @@ def display_blogs(request):
     return render(request, 'blog/index.html',context)
 
 def blog_detail(request, id):
-    article = ArticlePost.objects.get(id=id)
+    article = PetPost.objects.get(id=id)
     # 将markdown语法渲染成html样式
     article.body = markdown.markdown(article.body,
         extensions=[

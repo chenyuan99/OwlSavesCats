@@ -25,11 +25,6 @@ urlpatterns = [
     path("logout", hello.views.logout_request, name="logout"),
     path("login", hello.views.login_request, name="login"),
     re_path(r'^favicon\.ico$', favicon_view),
-    path("about", hello.views.about, name="about"),
-    path("faq", hello.views.faq, name="faq"),
-    path("privacy-policy", hello.views.privacy, name="privacy-policy"),
-    path("check-in", hello.views.paperclip, name="check-in"),
-    path("add-guest", hello.views.add_guest, name="add-guest"),
     path("account", hello.views.account, name="account"),
     path("paperclips",hello.views.paperclips, name = "paperclips"),
     path("paperclips/<int:paperclip_id>/",hello.views.paperclip_detail, name = "paperclip_detail"),
@@ -39,4 +34,5 @@ urlpatterns = [
     path('blog/index', hello.views.display_blogs, name='blog/index'),
     # 文章详情
     path('blog/detail/<int:id>/', hello.views.blog_detail, name='blog/detail'),
+    path('api-auth/', include('rest_framework.urls')),
 ]

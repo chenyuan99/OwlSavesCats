@@ -4,10 +4,9 @@
 
 <div class="container">
         <div class="gunicorn" style="text-align: center;">
-            <img src="https://brand.rice.edu/sites/g/files/bxs2591/files/2019-08/190308_Rice_Mechanical_Brand_Standards_Logos-2.png"
-                 alt="" width="72">
             <h2>Feed</h2>
         </div>
+    {% for city in object_list %}
         <div class="row">
             <div class="col-md-6">
                 <div class="card mb-4 shadow-sm">
@@ -26,87 +25,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="card mb-4 shadow-sm textonly">
-                    <div class="card-body">
-                        <p class="card-text">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
-                            praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint
-                            occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia
-                            animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita
-                            distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo
-                            minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor
-                            repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus
-                            saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum
-                            rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias
-                            consequatur aut perferendis doloribus asperiores repellat</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="card mb-4 shadow-sm textonly">
-                    <div class="card-body">
-                        <p class="card-text">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
-                            praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint
-                            occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia
-                            animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita
-                            distinctio.</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-    
-            <div class="col-md-6">
-                <div class="card mb-4 shadow-sm textpic">
-                    <img id="carouselPost2"
-                         src="https://images.unsplash.com/photo-1556888335-95371827d5fb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=889&q=80"
-                         class="d-block w-100" height=225 alt="Pic 2">
-                    <div class="card-body">
-                        <p class="card-text">This is a wider card with supporting text below as a natural
-                            lead-in to additional content. This content is a little bit longer.</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <button type="button" id="stop2" class="btn btn-sm btn-outline-danger">Stop</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card mb-4 shadow-sm">
-                    <div class="card-body textonly">
-                        <p class="card-text">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
-                            praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint
-                            occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia
-                            animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita
-                            distinctio.</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card mb-4 shadow-sm textpic">
-                    <img id="carouselPost3"
-                         src="https://images.unsplash.com/photo-1608085021978-6981f6993f9c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=784&q=80"
-                         class="d-block w-100" height=225 alt="Pic 2">
-                    <div class="card-body">
-                        <p class="card-text">TAt vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
-                            praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint
-                            occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia
-                            animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita
-                            distinctio.</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <button type="button" id="stop3" class="btn btn-sm btn-outline-danger">Stop</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    {% endfor %}
     </div>
 
 {% endblock %}

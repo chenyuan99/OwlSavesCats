@@ -1,6 +1,16 @@
 import os
 import django_heroku
 import dj_database_url
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
+# adding config
+cloudinary.config(
+  cloud_name = "hl7a3okqn",
+  api_key = "611729113638181",
+  api_secret = "VdRJwqMXOhhUltwYAyG6AKwTmsU"
+)
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = "CHANGE_ME!!!! (P.S. the SECRET_KEY environment variable will be used, if set, instead)."
@@ -15,6 +25,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    'rest_framework',
     "hello",
 ]
 
