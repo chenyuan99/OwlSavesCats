@@ -7,19 +7,44 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic import TemplateView, ListView
-from django.db.models import Q 
+from django.db.models import Q
 import logging
 import markdown
+from rest_framework import viewsets
+from rest_framework import permissions
+from hello.serializers import UserSerializer, GroupSerializer
+
+
+class UserViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = User.objects.all().order_by('-date_joined')
+    serializer_class = UserSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+
+class GroupViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows groups to be viewed or edited.
+    """
+    queryset = Group.objects.all()
+    serializer_class = GroupSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
 
 logger = logging.getLogger(__name__)
+
 
 class HomePageView(TemplateView):
     template_name = 'home.html'
 
+
 class SearchResultsView(ListView):
     model = Paperclip
-    template_name = 'main/search_results.html'  
-    def get_queryset(self): # new
+    template_name = 'main/search_results.html'
+
+    def get_queryset(self):  # new
         query = self.request.GET.get('q')
         object_list = Paperclip.objects.filter(
             Q(title__icontains=query) | Q(abstract__icontains=query)
@@ -33,8 +58,10 @@ def index(request):
     context = {"form": form}
     return render(request, "index.html", context)
 
+
 def about(request):
     return render(request, "main/about.html")
+
 
 def db(request):
     greeting = Greeting()
@@ -42,10 +69,12 @@ def db(request):
     greetings = Greeting.objects.all()
     return render(request, "db.html", {"greetings": greetings})
 
+
 def logout_request(request):
     logout(request)
     messages.info(request, "Logged out successfully!")
     return redirect("index")
+
 
 def login_request(request):
     if request.method == 'POST':
@@ -63,9 +92,10 @@ def login_request(request):
         else:
             messages.error(request, "Invalid username or password.")
     form = AuthenticationForm()
-    return render(request = request,
-                    template_name = "main/login.html",
-                    context={"form":form})    
+    return render(request=request,
+                  template_name="main/login.html",
+                  context={"form": form})
+
 
 def register(request):
     if request.method == "POST":
@@ -80,20 +110,23 @@ def register(request):
             for msg in form.error_messages:
                 print(form.error_messages[msg])
 
-            return render(request = request,
-                          template_name = "main/register.html",
-                          context={"form":form})
+            return render(request=request,
+                          template_name="main/register.html",
+                          context={"form": form})
 
     form = UserCreationForm
-    return render(request = request,
-                  template_name = "main/register.html",
-                  context={"form":form})
+    return render(request=request,
+                  template_name="main/register.html",
+                  context={"form": form})
+
 
 def faq(request):
     return render(request, "main/faq.html")
 
+
 def privacy(request):
     return render(request, "main/privacy-policy.html")
+
 
 def paperclip(request):
     username = request.user.get_username()
@@ -103,7 +136,8 @@ def paperclip(request):
         if form.is_valid():
             address = form.cleaned_data['address']
             paperclip.objects.create(address=address)
-            return render(request, "check-in.html", {"user": username, "form": form, "success": "Clock In Successfully!"})
+            return render(request, "check-in.html",
+                          {"user": username, "form": form, "success": "Clock In Successfully!"})
     else:
         form = AddPaperForm()
 
@@ -128,7 +162,8 @@ def add_guest(request):
 
             Guest.objects.create(event=event, realname=realname,
                                  phone=phone, email=email, sign=sign)
-            return render(request, "add-guest.html", {"user": username, "form": form, "success": "Add Guest Successfully"})
+            return render(request, "add-guest.html",
+                          {"user": username, "form": form, "success": "Add Guest Successfully"})
 
     else:
         form = AddGuestForm()
@@ -141,56 +176,80 @@ def account(request):
     # return render(request, "main/account.html",{'query_results':query_results})
     return render(request, "main/account.html")
 
+
 def paperclips(request):
     paperclips = Paperclip.objects.all()
-    return render(request, 'components/paperclips.html', {'paperclips':paperclips})
+    return render(request, 'components/paperclips.html', {'paperclips': paperclips})
+
 
 def paperclip_detail(request, paperclip_id):
     try:
-        paperclip = Paperclip.objects.get(id= paperclip_id)
+        paperclip = Paperclip.objects.get(id=paperclip_id)
     except Paperclip.DoesNotExist:
         raise Http404('paperclip not found')
-    return render(request, 'components/paperclip_detail.html', {'paperclip':paperclip,})
+    return render(request, 'components/paperclip_detail.html', {'paperclip': paperclip, })
     # return HttpResponse(f'<p> paperclip_detail view with id {paperclip_id}</p>')
 
+
 def add_paperclip(request):
-	return add_item(request, AddPaperForm)
+    return add_item(request, AddPaperForm)
+
 
 def display_paperclips(request):
     context = Paperclip.objects.all()
     context = {
-		'items': items,
-		'header': 'paperclip'
-	}
-    return render(request, 'components/paperclips.html',context)
+        'items': items,
+        'header': 'paperclip'
+    }
+    return render(request, 'components/paperclips.html', context)
 
 
 def add_item(request, cls):
-	if request.method == 'POST':
-		form = cls(request.POST)
+    if request.method == 'POST':
+        form = cls(request.POST)
 
-		if form.is_valid():
-			form.save()
-			return redirect('index')
+        if form.is_valid():
+            form.save()
+            return redirect('index')
 
-	else:
-		form = cls()
-		return render(request, 'add_new.html', {'form': form})
+    else:
+        form = cls()
+        return render(request, 'add_new.html', {'form': form})
+
 
 def display_blogs(request):
     context = {}
-    return render(request, 'blog/index.html',context)
+    return render(request, 'blog/index.html', context)
+
 
 def blog_detail(request, id):
     article = PetPost.objects.get(id=id)
     # 将markdown语法渲染成html样式
     article.body = markdown.markdown(article.body,
-        extensions=[
-        # 包含 缩写、表格等常用扩展
-        'markdown.extensions.extra',
-        # 语法高亮扩展
-        'markdown.extensions.codehilite',
-        ])
+                                     extensions=[
+                                         # 包含 缩写、表格等常用扩展
+                                         'markdown.extensions.extra',
+                                         # 语法高亮扩展
+                                         'markdown.extensions.codehilite',
+                                     ])
 
-    context = { 'article': article }
+    context = {'article': article}
     return render(request, 'blog/detail.html', context)
+
+
+class UserViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = User.objects.all().order_by('-date_joined')
+    serializer_class = UserSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+
+class GroupViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows groups to be viewed or edited.
+    """
+    queryset = Group.objects.all()
+    serializer_class = GroupSerializer
+    permission_classes = [permissions.IsAuthenticated]
