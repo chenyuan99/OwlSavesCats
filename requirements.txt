@@ -7,3 +7,5 @@ pymysql
 djangorestframework
 django-filter
 cloudinary
+django-crispy-forms
+crispy-bootstrap5

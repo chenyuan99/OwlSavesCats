@@ -7,9 +7,9 @@ import cloudinary.api
 
 # adding config
 cloudinary.config(
-  cloud_name = "hl7a3okqn",
-  api_key = "611729113638181",
-  api_secret = "VdRJwqMXOhhUltwYAyG6AKwTmsU"
+    cloud_name="hl7a3okqn",
+    api_key="611729113638181",
+    api_secret="VdRJwqMXOhhUltwYAyG6AKwTmsU"
 )
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -25,6 +25,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    'crispy_forms',
+    'crispy_bootstrap5',
     'rest_framework',
     "hello",
 ]
@@ -67,11 +69,6 @@ DATABASES = {
         "mysql://bb35b85be45105:bb27a820@us-cdbr-east-05.cleardb.net/heroku_9576b3861dcc914")
 }
 
-
-
-
-
-
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
 
@@ -101,3 +98,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = "/static/"
 
 django_heroku.settings(locals())
+
+# CRISPY_TEMPLATE_PACK = 'bootstrap'
