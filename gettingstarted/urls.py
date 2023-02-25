@@ -11,6 +11,7 @@ import hello.views
 router = routers.DefaultRouter()
 router.register(r'users', hello.views.UserViewSet)
 router.register(r'groups', hello.views.GroupViewSet)
+router.register(r'petposts', hello.views.PetPostViewSet)
 
 # To add a new path, first import the app:
 # import blog

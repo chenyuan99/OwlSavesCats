@@ -32,6 +32,14 @@ class GroupViewSet(viewsets.ModelViewSet):
     serializer_class = GroupSerializer
     permission_classes = [permissions.IsAuthenticated]
 
+class PetPostViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows groups to be viewed or edited.
+    """
+    queryset = PetPost.objects.all()
+    serializer_class = GroupSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
 
 logger = logging.getLogger(__name__)
 
@@ -59,8 +67,6 @@ def index(request):
     return render(request, "index.html", context)
 
 
-def about(request):
-    return render(request, "main/about.html")
 
 
 def db(request):
@@ -120,8 +126,6 @@ def register(request):
                   context={"form": form})
 
 
-def faq(request):
-    return render(request, "main/faq.html")
 
 
 def privacy(request):
@@ -179,7 +183,7 @@ def account(request):
 
 def paperclips(request):
     paperclips = Paperclip.objects.all()
-    return render(request, 'components/paperclips.html', {'paperclips': paperclips})
+    return render(request, 'components/petposts.html', {'paperclips': paperclips})
 
 
 def paperclip_detail(request, paperclip_id):
@@ -187,7 +191,7 @@ def paperclip_detail(request, paperclip_id):
         paperclip = Paperclip.objects.get(id=paperclip_id)
     except Paperclip.DoesNotExist:
         raise Http404('paperclip not found')
-    return render(request, 'components/paperclip_detail.html', {'paperclip': paperclip, })
+    return render(request, 'components/petpost_detail.html', {'paperclip': paperclip, })
     # return HttpResponse(f'<p> paperclip_detail view with id {paperclip_id}</p>')
 
 
@@ -201,7 +205,7 @@ def display_paperclips(request):
         'items': items,
         'header': 'paperclip'
     }
-    return render(request, 'components/paperclips.html', context)
+    return render(request, 'components/petposts.html', context)
 
 
 def add_item(request, cls):
